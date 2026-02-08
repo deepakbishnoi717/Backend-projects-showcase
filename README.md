@@ -1,98 +1,187 @@
-# 🏦 ATM Banking System (Full-Stack)
+# Backend Projects Portfolio 🚀
 
+A collection of backend projects showcasing modern web development practices, API design, and authentication systems.
+
+Built with **FastAPI**, **PostgreSQL**, and clean architecture principles.
+
+---
+
+## 📂 Projects Overview
+
+### Project 1: ATM Banking System (Full-Stack)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=render)](https://atm-banking-system.onrender.com)
 
-A premium, portfolio-ready full-stack banking application built with **FastAPI**, **PostgreSQL**, and **Vanilla JavaScript**. 
+A premium full-stack banking application with transaction management and real-time UI.
 
-This project demonstrates clean architecture, robust API design, and modern UI practices.
+**Tech Stack:** FastAPI, PostgreSQL, Vanilla JavaScript, Glassmorphism UI
 
----
+**Key Features:**
+- 💰 Transaction management with atomic commits
+- 🎨 Premium glassmorphism UI design
+- 📊 Real-time balance updates
+- 🔒 Account validation and security
 
-## 🔗 Live Application
-You can access the live version of this project here:
-👉 **[https://atm-banking-system.onrender.com](https://atm-banking-system.onrender.com)**
-
----
-
-## 🏗️ Architecture
-
-The project is divided into two distinct components:
-
-| Component | Technology | Description |
-| :--- | :--- | :--- |
-| **Backend** | FastAPI, SQLAlchemy, PostgreSQL | RESTful API with automated documentation and secure transaction logic. |
-| **Frontend** | HTML5, CSS3 (Glassmorphism), JS | Responsive, single-page application (SPA) with real-time UI updates. |
-
-### 📁 Project Structure
-
-```text
-Month-1-All-Project/
-└── Project-1/             # Main Project Directory
-    ├── backend/           # Python/FastAPI Service
-    │   ├── main.py        # API Entry point & Routes
-    │   ├── models.py      # Database Models
-    │   ├── database.py    # Connection logic
-    │   └── requirements.txt
-    ├── frontend/          # Web Interface
-    │   ├── assets/        # CSS & Visuals
-    │   ├── js/            # Scripting
-    │   └── index.html     # Main page
-    ├── START.bat          # Quick Launch (Windows)
-    └── README.md          # Project Manual
-```
+[View Project Details →](./Project-1/README.md)
 
 ---
 
-## 🚀 Getting Started
+### Project 2: JWT, Hashing & OAuth Authentication
 
-### 1. Prerequisites
-- **Python 3.10+**
-- **PostgreSQL** (Service must be running)
+A production-ready authentication API implementing industry-standard security practices.
 
-### 2. Environment Configuration
-Navigate to `Project-1/backend/` and copy `.env.example` to `.env`. Update your credentials:
-```env
-DB_USER=your_postgres_user
-DB_PASSWORD=your_postgres_password
-DB_NAME=your_database_name
-```
+**Tech Stack:** FastAPI, PostgreSQL, JWT, Bcrypt, SQLAlchemy
 
-### 3. Running Locally (Windows)
-Navigate into the project folder and run:
-```powershell
-cd Project-1
-.\START.bat
-```
+**Key Features:**
+- 🔐 JWT token-based authentication
+- 🔒 Bcrypt password hashing
+- 👤 User registration & login
+- ⏱️ Token expiration management
+- 🛡️ Protected route middleware
+- 📝 Environment-based configuration
 
-### 4. Manual Backend Setup
+[View Project Details →](./project-2-jwt-hashing-oauth/README.md)
+
+---
+
+## 🛠️ Tech Stack Across Projects
+
+| Technology | Purpose |
+|:-----------|:--------|
+| **FastAPI** | High-performance async web framework |
+| **PostgreSQL** | Robust relational database |
+| **SQLAlchemy** | Python ORM for database operations |
+| **JWT** | Stateless authentication tokens |
+| **Bcrypt** | Secure password hashing |
+| **Pydantic** | Data validation and serialization |
+| **Uvicorn** | ASGI server for production |
+
+---
+
+## 🚀 Quick Start
+
+Each project has its own setup instructions. General workflow:
+
+### 1. Clone the Repository
 ```bash
-cd Project-1/backend
+git clone https://github.com/deepakbishnoi717/Month-1-All-Project.git
+cd Month-1-All-Project
+```
+
+### 2. Navigate to a Project
+```bash
+cd project-2-jwt-hashing-oauth  # or Project-1
+```
+
+### 3. Install Dependencies
+```bash
 pip install -r requirements.txt
-uvicorn main:app --reload
+```
+
+### 4. Configure Environment
+```bash
+cp .env.example .env
+# Edit .env with your credentials
+```
+
+### 5. Run the Application
+```bash
+uvicorn app.main:app --reload
 ```
 
 ---
 
-## 🔥 Key Technical Features
+## 📚 What I Learned
 
-### 🛡️ Robust Validation
-- Used **Pydantic** for typed request/response validation.
-- Implemented `HTTPException` for clean RESTful error reporting.
+### Backend Development
+- RESTful API design patterns
+- Database modeling with SQLAlchemy
+- Authentication & authorization flows
+- Environment-based configuration
+- Error handling and validation
 
-### 💰 Transactional Integrity
-- Atomic database commits for all money transfers.
-- Real-time transaction logging with historical tracking.
+### Security Best Practices
+- Password hashing with bcrypt
+- JWT token generation and validation
+- Protecting sensitive routes
+- Environment variable management
+- SQL injection prevention via ORM
 
-### 🎨 Modern UI Design
-- **Glassmorphism**: High-end transparent UI elements with backdrop filtering.
-- **Micro-animations**: Interactive hover states and bounce effects for a premium feel.
+### DevOps & Deployment
+- Git version control
+- Environment separation (dev/prod)
+- Database migrations
+- API documentation with Swagger
+
+---
+
+## 🎯 Project Structure
+
+```
+Month-1-All-Project/
+├── Project-1/                          # ATM Banking System
+│   ├── backend/                        # FastAPI backend
+│   ├── frontend/                       # Vanilla JS frontend
+│   └── README.md
+│
+├── project-2-jwt-hashing-oauth/       # Authentication API
+│   ├── app/
+│   │   ├── main.py                    # FastAPI app
+│   │   ├── models.py                  # User model & auth logic
+│   │   ├── database.py                # DB connection
+│   │   ├── router.py                  # API routes
+│   │   └── schema.py                  # Pydantic schemas
+│   ├── .env.example                   # Environment template
+│   ├── requirements.txt               # Dependencies
+│   └── README.md
+│
+└── README.md                          # This file
+```
+
+---
+
+## 🔥 Key Highlights
+
+### Clean Code Practices
+- ✅ Separation of concerns (models, routes, schemas)
+- ✅ Type hints and Pydantic validation
+- ✅ Environment-based configuration
+- ✅ Comprehensive error handling
+
+### Security First
+- ✅ No hardcoded credentials
+- ✅ Password hashing (bcrypt)
+- ✅ JWT token authentication
+- ✅ Protected routes with middleware
+- ✅ `.gitignore` for sensitive files
+
+### Production Ready
+- ✅ PostgreSQL for data persistence
+- ✅ SQLAlchemy ORM
+- ✅ Async FastAPI endpoints
+- ✅ Auto-generated API docs (Swagger)
+- ✅ Proper dependency management
 
 ---
 
 ## 📈 Future Enhancements
-- [ ] **PIN Hashing**: Secure storage using `bcrypt`.
-- [ ] **JWT Auth**: Transition from SessionStorage to stateless JWT tokens.
-- [ ] **Admin Dashboard**: Analytics for global bank health.
+
+- [ ] OAuth2 integration (Google, GitHub)
+- [ ] Rate limiting and throttling
+- [ ] Redis for session management
+- [ ] Email verification system
+- [ ] Role-based access control (RBAC)
+- [ ] API versioning
+- [ ] Comprehensive test coverage
+- [ ] Docker containerization
 
 ---
-**Backend developed and designed by Deepak** | **Frontend crafted with AI** 🚀
+
+## 🤝 Connect
+
+Built by **Deepak Bishnoi** | Backend Developer
+
+Learning, building, and shipping production-ready backends 🚀
+
+---
+
+**Note:** Each project contains its own detailed README with setup instructions, API documentation, and technical details.
