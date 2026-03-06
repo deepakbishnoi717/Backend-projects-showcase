@@ -27,7 +27,7 @@ class ChatRequest(BaseModel):
 
     system_prompt: str = Field(
         default="You are a helpful AI assistant",
-        min_length=1,
+        min_length=0,
         max_length=1000,
         description="Instructions for the AI's behavior"
     )
