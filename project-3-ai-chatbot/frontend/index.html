@@ -767,6 +767,10 @@
           <option value="gemma2-9b-it">Gemma 2 9B</option>
           <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
         </select>
+        <label
+          style="display:flex; align-items:center; gap:5px; font-size:.78rem; color:var(--muted2); cursor:pointer;">
+          <input type="checkbox" id="webSearchToggle" style="accent-color:var(--blue);"> Web Search
+        </label>
         <button class="clear-btn" onclick="clearChat()">🗑 Clear</button>
       </div>
     </div>
@@ -1026,6 +1030,7 @@
           }
         } else {
           // General AI chat
+          const allowSearch = document.getElementById('webSearchToggle').checked;
           const r = await fetch(API + '/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1033,7 +1038,7 @@
               messages: [msg],
               model_name: model,
               model_provider: 'groq',
-              allow_search: false,
+              allow_search: allowSearch,
               system_prompt: 'You are a concise assistant. Reply in 1-2 short sentences maximum. Never give long answers or bullet points unless explicitly asked.'
             })
           });
