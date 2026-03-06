@@ -18,17 +18,20 @@ load_dotenv()
 # Format: postgresql://username:password@host:port/database_name
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgresql:1234@localhost:5432/deepak"
+    "sqlite:///./audit_logs.db"
 )
 
-# create_engine: Creates the connection pool to PostgreSQL
-# pool_size=5: Keep 5 connections open (reused across requests)
-# max_overflow=10: Allow up to 10 extra connections during high traffic
-engine = create_engine(
-    DATABASE_URL,
-    pool_size=5,
-    max_overflow=10
-)
+# create_engine: Creates the connection pool
+if DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(
+        DATABASE_URL, connect_args={"check_same_thread": False}
+    )
+else:
+    engine = create_engine(
+        DATABASE_URL,
+        pool_size=5,
+        max_overflow=10
+    )
 
 # sessionmaker: Creates a factory for database sessions
 # autocommit=False: We control when data is saved (safer)
