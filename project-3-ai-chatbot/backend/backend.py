@@ -6,10 +6,6 @@ from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
 from langchain_community.tools.tavily_search import TavilySearchResults
 
-search_tool = TavilySearchResults(max_results=5)
-
-
-
 from langgraph.prebuilt import create_react_agent
 system_prompt = "Act as a AI chatbot who is smart and friendly"
 from langchain_core.messages.ai import AIMessage
