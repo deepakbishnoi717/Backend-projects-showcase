@@ -1,44 +1,22 @@
-# Python
-__pycache__/
+# -- Python --------------------------------
+"**/__pycache__/"
 *.py[cod]
-*$py.class
+*.class
 *.so
 .Python
-env/
+
+# -- Virtual Environment --------------------
+.venv/
 venv/
+env/
 ENV/
-*.egg-info/
-dist/
-build/
+
+# -- Environment Variables (NEVER commit) --
 .env
+.env.*
 
-# Node
-node_modules/
-npm-debug.log
-yarn-error.log
-.npm
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Database
+# -- Project Specific ----------------------
+"project-3-ai-chatbot/backend/uploads/*"
+!"project-3-ai-chatbot/backend/uploads/.gitkeep"
 *.db
-*.sqlite
 *.sqlite3
-
-# Virtual environments
-week22/
-
-# Build outputs
-.next/
-out/
-build/
-dist/

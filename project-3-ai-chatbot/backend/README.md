@@ -22,49 +22,33 @@ A production-ready AI Knowledge Base system built with **FastAPI**, **LangChain*
 ## 📁 Project Structure
 
 ```
-ai-knowledge-base/
+project-3-ai-chatbot/
 │
-├── main.py                  # FastAPI app — routes, middleware, startup
-├── backend.py               # AI chat engine (LangChain + Groq/OpenAI)
-├── config.py                # App settings and constants
-├── database.py              # SQLAlchemy models + audit log DB
-├── schema.py                # Chat request/response Pydantic models
-├── validators.py            # Input sanitization and validation
-├── tool_schemas.py          # Summarize & JSON extraction schemas
+├── backend/                 # Python/FastAPI source code
+│   ├── main.py              # Application entry point
+│   ├── backend.py           # AI logic
+│   ├── ...                  # Other logic files (config, database, etc.)
+│   ├── middleware/          # Security & logging middleware
+│   ├── tests/               # Unit tests
+│   └── uploads/             # User file storage
 │
-├── kb_router.py             # Knowledge Base API routes (/kb/*)
-├── kb_service.py            # RAG pipeline: load → chunk → embed → search → answer
-├── kb_schemas.py            # KB Pydantic models (upload, search, Q&A)
-├── kb_models.py             # DB models for document metadata
+├── frontend/                # Web UI files
+│   └── index.html           # Main dashboard
 │
-├── middleware/
-│   ├── rate_limiter.py      # Per-IP rate limiting
-│   ├── logging_middleware.py # Request/response logging
-│   └── exception_handlers.py # Centralized error handling
-│
-├── static/
-│   └── index.html           # Full web UI (dark theme, RAG chat, doc upload)
-│
-├── tests/
-│   ├── test_kb.py           # Knowledge Base unit tests
-│   └── test_tools.py        # AI Tools unit tests
-│
-├── uploads/                 # Runtime folder for uploaded documents
-├── requirements.txt         # Python dependencies
-├── pyproject.toml           # Project metadata
-└── .python-version          # Python version pin (3.14.2)
+├── requirements.txt         # Project dependencies
+└── README.md                # This file
 ```
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Clone the repo
+### 1. Clone & Navigate
 ```bash
 git clone https://github.com/deepakbishnoi717/Backend-projects-showcase.git
-cd Backend-projects-showcase
-cd "project 2 - ai chatbot"
+cd Backend-projects-showcase/project-3-ai-chatbot/backend
 ```
+
 
 ### 2. Create virtual environment
 ```bash

@@ -100,7 +100,7 @@ app.add_exception_handler(Exception, generic_exception_handler)
 app.include_router(kb_router)
 
 # Serve static files (UI)
-app.mount("/ui", StaticFiles(directory="static", html=True), name="static")
+app.mount("/ui", StaticFiles(directory="../frontend", html=True), name="static")
 
 
 # ============================================================
