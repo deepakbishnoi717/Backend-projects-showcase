@@ -1,187 +1,150 @@
-# Backend Projects Portfolio 🚀
+# 🧠 AI Knowledge Base — RAG + Chat API
 
-A collection of backend projects showcasing modern web development practices, API design, and authentication systems.
+> **Backend by Deepak Bishnoi · Frontend & UI developed by AI**
 
-Built with **FastAPI**, **PostgreSQL**, and clean architecture principles.
-
----
-
-## 📂 Projects Overview
-
-### Project 1: ATM Banking System (Full-Stack)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=render)](https://atm-banking-system.onrender.com)
-
-A premium full-stack banking application with transaction management and real-time UI.
-
-**Tech Stack:** FastAPI, PostgreSQL, Vanilla JavaScript, Glassmorphism UI
-
-**Key Features:**
-- 💰 Transaction management with atomic commits
-- 🎨 Premium glassmorphism UI design
-- 📊 Real-time balance updates
-- 🔒 Account validation and security
-
-[View Project Details →](./Project-1/README.md)
+A production-ready AI Knowledge Base system built with **FastAPI**, **LangChain**, and **RAG (Retrieval Augmented Generation)**. Upload any document, ask questions, and get AI-powered answers — all through a sleek dark-themed web UI.
 
 ---
 
-### Project 2: JWT, Hashing & OAuth Authentication
+## ✨ Features
 
-A production-ready authentication API implementing industry-standard security practices.
-
-**Tech Stack:** FastAPI, PostgreSQL, JWT, Bcrypt, SQLAlchemy
-
-**Key Features:**
-- 🔐 JWT token-based authentication
-- 🔒 Bcrypt password hashing
-- 👤 User registration & login
-- ⏱️ Token expiration management
-- 🛡️ Protected route middleware
-- 📝 Environment-based configuration
-
-[View Project Details →](./project-2-jwt-hashing-oauth/README.md)
+- 📤 **Document Upload** — Upload PDF, TXT, or DOCX files
+- 🔍 **Semantic Search** — Search by meaning using vector embeddings (Sentence-BERT)
+- 💬 **RAG Q&A** — Ask questions, get answers from your documents (zero hallucination)
+- 🤖 **AI Chat** — Direct chat with LLaMA 3.3 70B, Gemma, Mixtral via Groq
+- 🛠️ **AI Tools** — Text summarization and JSON extraction
+- 🔐 **Security** — API key auth, rate limiting, request validation, guardrails
+- 📊 **Audit Logging** — All requests logged to SQLite database
+- 🌐 **Web UI** — Beautiful dark-themed single-page application
 
 ---
 
-## 🛠️ Tech Stack Across Projects
+## 📁 Project Structure
 
-| Technology | Purpose |
-|:-----------|:--------|
-| **FastAPI** | High-performance async web framework |
-| **PostgreSQL** | Robust relational database |
-| **SQLAlchemy** | Python ORM for database operations |
-| **JWT** | Stateless authentication tokens |
-| **Bcrypt** | Secure password hashing |
-| **Pydantic** | Data validation and serialization |
-| **Uvicorn** | ASGI server for production |
+```
+ai-knowledge-base/
+│
+├── main.py                  # FastAPI app — routes, middleware, startup
+├── backend.py               # AI chat engine (LangChain + Groq/OpenAI)
+├── config.py                # App settings and constants
+├── database.py              # SQLAlchemy models + audit log DB
+├── schema.py                # Chat request/response Pydantic models
+├── validators.py            # Input sanitization and validation
+├── tool_schemas.py          # Summarize & JSON extraction schemas
+│
+├── kb_router.py             # Knowledge Base API routes (/kb/*)
+├── kb_service.py            # RAG pipeline: load → chunk → embed → search → answer
+├── kb_schemas.py            # KB Pydantic models (upload, search, Q&A)
+├── kb_models.py             # DB models for document metadata
+│
+├── middleware/
+│   ├── rate_limiter.py      # Per-IP rate limiting
+│   ├── logging_middleware.py # Request/response logging
+│   └── exception_handlers.py # Centralized error handling
+│
+├── static/
+│   └── index.html           # Full web UI (dark theme, RAG chat, doc upload)
+│
+├── tests/
+│   ├── test_kb.py           # Knowledge Base unit tests
+│   └── test_tools.py        # AI Tools unit tests
+│
+├── uploads/                 # Runtime folder for uploaded documents
+├── requirements.txt         # Python dependencies
+├── pyproject.toml           # Project metadata
+└── .python-version          # Python version pin (3.14.2)
+```
 
 ---
 
 ## 🚀 Quick Start
 
-Each project has its own setup instructions. General workflow:
-
-### 1. Clone the Repository
+### 1. Clone the repo
 ```bash
-git clone https://github.com/deepakbishnoi717/Month-1-All-Project.git
-cd Month-1-All-Project
+git clone https://github.com/deepakbishnoi717/Backend-projects-showcase.git
+cd Backend-projects-showcase
+cd "project 2 - ai chatbot"
 ```
 
-### 2. Navigate to a Project
+### 2. Create virtual environment
 ```bash
-cd project-2-jwt-hashing-oauth  # or Project-1
+python -m venv .venv
+.venv\Scripts\activate      # Windows
+source .venv/bin/activate   # Mac/Linux
 ```
 
-### 3. Install Dependencies
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure Environment
+### 4. Set up environment variables
+Create a `.env` file in the root:
+```env
+GROQ_API_KEY=your_groq_api_key
+OPENAI_API_KEY=your_openai_api_key       # optional
+TAVILY_API_KEY=your_tavily_api_key       # optional (web search)
+X_API_KEY=your_custom_api_key            # for /tools endpoints
+```
+
+### 5. Run the server
 ```bash
-cp .env.example .env
-# Edit .env with your credentials
+uvicorn main:app --reload
 ```
 
-### 5. Run the Application
-```bash
-uvicorn app.main:app --reload
-```
+### 6. Open the UI
+Visit **http://localhost:8000** — it auto-redirects to the dashboard.
 
 ---
 
-## 📚 What I Learned
+## 🔌 API Endpoints
 
-### Backend Development
-- RESTful API design patterns
-- Database modeling with SQLAlchemy
-- Authentication & authorization flows
-- Environment-based configuration
-- Error handling and validation
-
-### Security Best Practices
-- Password hashing with bcrypt
-- JWT token generation and validation
-- Protecting sensitive routes
-- Environment variable management
-- SQL injection prevention via ORM
-
-### DevOps & Deployment
-- Git version control
-- Environment separation (dev/prod)
-- Database migrations
-- API documentation with Swagger
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Health check |
+| `POST` | `/chat` | Chat with AI model |
+| `POST` | `/kb/upload` | Upload & process a document |
+| `POST` | `/kb/search` | Semantic search across documents |
+| `POST` | `/kb/answer` | RAG-powered Q&A from documents |
+| `POST` | `/tools/summarize` | Summarize text (API key required) |
+| `POST` | `/tools/extract_json` | Extract structured JSON from text |
+| `GET` | `/ui` | Web UI dashboard |
 
 ---
 
-## 🎯 Project Structure
+## 🛠️ Tech Stack
 
-```
-Month-1-All-Project/
-├── Project-1/                          # ATM Banking System
-│   ├── backend/                        # FastAPI backend
-│   ├── frontend/                       # Vanilla JS frontend
-│   └── README.md
-│
-├── project-2-jwt-hashing-oauth/       # Authentication API
-│   ├── app/
-│   │   ├── main.py                    # FastAPI app
-│   │   ├── models.py                  # User model & auth logic
-│   │   ├── database.py                # DB connection
-│   │   ├── router.py                  # API routes
-│   │   └── schema.py                  # Pydantic schemas
-│   ├── .env.example                   # Environment template
-│   ├── requirements.txt               # Dependencies
-│   └── README.md
-│
-└── README.md                          # This file
-```
+| Layer | Technology |
+|---|---|
+| **Backend** | FastAPI, Python 3.14 |
+| **AI / LLM** | LangChain, LangGraph, Groq API |
+| **Models** | LLaMA 3.3 70B, Gemma 2 9B, Mixtral 8x7B |
+| **Embeddings** | Sentence-BERT (HuggingFace) |
+| **Vector Store** | ChromaDB / FAISS |
+| **Database** | SQLite (via SQLAlchemy) |
+| **Frontend** | HTML, CSS, JavaScript (no framework) |
+| **Security** | API key auth, rate limiting, input validation |
 
 ---
 
-## 🔥 Key Highlights
+## 📸 UI Preview
 
-### Clean Code Practices
-- ✅ Separation of concerns (models, routes, schemas)
-- ✅ Type hints and Pydantic validation
-- ✅ Environment-based configuration
-- ✅ Comprehensive error handling
-
-### Security First
-- ✅ No hardcoded credentials
-- ✅ Password hashing (bcrypt)
-- ✅ JWT token authentication
-- ✅ Protected routes with middleware
-- ✅ `.gitignore` for sensitive files
-
-### Production Ready
-- ✅ PostgreSQL for data persistence
-- ✅ SQLAlchemy ORM
-- ✅ Async FastAPI endpoints
-- ✅ Auto-generated API docs (Swagger)
-- ✅ Proper dependency management
+| Page | Description |
+|---|---|
+| 🏠 Home | Dashboard with system stats |
+| 📤 Upload | Drag & drop document upload |
+| 💬 Chat | Ask AI or ask from your document |
+| 🛠️ Tools | Summarize text, extract JSON |
 
 ---
 
-## 📈 Future Enhancements
+## 👨‍💻 Credits
 
-- [ ] OAuth2 integration (Google, GitHub)
-- [ ] Rate limiting and throttling
-- [ ] Redis for session management
-- [ ] Email verification system
-- [ ] Role-based access control (RBAC)
-- [ ] API versioning
-- [ ] Comprehensive test coverage
-- [ ] Docker containerization
+- **Backend Architecture & API Development** — [Deepak Bishnoi](https://github.com/deepakbishnoi717)
+- **Frontend UI & Design** — AI-generated (Antigravity)
 
 ---
 
-## 🤝 Connect
+## 📄 License
 
-Built by **Deepak Bishnoi** | Backend Developer
-
-Learning, building, and shipping production-ready backends 🚀
-
----
-
-**Note:** Each project contains its own detailed README with setup instructions, API documentation, and technical details.
+MIT License — free to use, modify, and distribute.
